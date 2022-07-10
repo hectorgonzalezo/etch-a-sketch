@@ -3,7 +3,7 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     align-content: center;
 }
@@ -18,4 +18,8 @@ body {
 
 .pixel {
     background-color: black;
+}
+
+#restart-button {
+    padding: 10px 15px;
 }

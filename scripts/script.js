@@ -1,7 +1,9 @@
 const sketchContainer = document.querySelector('.sketch-container')
+const restartButton = document.querySelector('#restart-button')
 
 //size of each side of the sketch
 const initialSize = 16;
+let pixels
 
 //create a size*size array of pixels 
 function generatePixels(size = initialSize) {
@@ -15,14 +17,46 @@ function generatePixels(size = initialSize) {
     height: ${100 / size}%;
     width: ${100 / size}%;`
 
-    }
+    };
+
+    pixels = document.querySelectorAll('.pixel');
+    addPixelColorChange(pixels)
+};
+
+//change color when hovering over pixels
+function addPixelColorChange(pixels = pixels) {
+    pixels.forEach(pixel => pixel.addEventListener('mouseover', (event) => {
+        event.target.style.backgroundColor = 'white'
+    }))
 }
+
+function removePixels() {
+    pixels.forEach(pixel => sketchContainer.removeChild(pixel));
+};
 
 generatePixels()
 
-const pixels = document.querySelectorAll('.pixel')
 
-//change color when hovering over pixels
-pixels.forEach(pixel => pixel.addEventListener('mouseover', (event) => {
-    console.log(event.target.style.backgroundColor='white')
-}))
+
+
+function restartGrid() {
+    let size = prompt(
+        "Please indicate the number of squares per side you want:\r" +
+        "(The maximum number is 64)");
+    size = parseInt(size);
+    if (Number.isNaN(size)) return;//exit loop if cancel button is pressed on prompt
+    //If input is wrong, ask again
+    while (!Number.isInteger(size) || size > 64 || size < 1) {
+        size = prompt("Wrong! Write a number between 1 and 64.");
+        size = parseInt(size);
+        if (Number.isNaN(size)) break;//exit loop if cancel button is pressed on prompt
+        console.log(size)
+    };
+    if (Number.isNaN(size)) return;//exit loop if cancel button is pressed on prompt
+
+    removePixels()
+    generatePixels(size)
+}
+
+
+restartButton.addEventListener('click', () => restartGrid())
