@@ -11,7 +11,7 @@ body {
 .sketch-container {
     width: 60vw;
     height: 60vh;
-    background-color: blueviolet;
+    background-color: black;
     display: flex;
     flex-wrap: wrap;
 }
@@ -23,3 +23,5 @@ body {
 #restart-button {
     padding: 10px 15px;
 }
+
+
