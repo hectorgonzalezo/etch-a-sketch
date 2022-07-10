@@ -1,0 +1,21 @@
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.sketch-container {
+    width: 60vw;
+    height: 60vh;
+    background-color: blueviolet;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pixel {
+    background-color: black;
+}
