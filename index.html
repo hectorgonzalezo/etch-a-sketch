@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +9,28 @@
     <script src="./scripts/script.js" defer></script>
     <link rel="stylesheet" href="./styles/style.css">
 </head>
+
 <body>
+    <h1 id="title">Etch-a-sketch</h1>
     <div class="options-container">
-        <button id="restart-button">Restart</button>
+        <div class="option">
+            <h2>Change grid size:</h2>
+            <p id="change-paragraph">Please indicate the number <br>
+                of squares per side you want<br>
+                (The maximum is 64):</p>
+            <input type="text" id="size-form"></input>
+            <button id="restart-button">Change</button>
+        </div>
+        <div class="mode">
+            <h2>Choose mode</h2>
+            <div id="buttons-div">
+                <button id="grayscale-button">Grayscale</button>
+                <button id="rainbow-button">Rainbow</button>
+            </div>
+        </div>
     </div>
     <div class="sketch-container">
     </div>
 </body>
+
 </html>

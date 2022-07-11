@@ -1,9 +1,14 @@
 const sketchContainer = document.querySelector('.sketch-container')
 const restartButton = document.querySelector('#restart-button')
+const sizeForm = document.querySelector('#size-form')
+const changeParagraph = document.querySelector('#change-paragraph')
+const grayscaleButton = document.querySelector("#grayscale-button")
+const rainbowButton = document.querySelector('#rainbow-button')
 
 //size of each side of the sketch
 const initialSize = 16;
 let pixels
+let size
 let pixelsBrightness //used to incrementally change the color to black
 
 
@@ -34,6 +39,14 @@ function generatePixels(size = initialSize) {
     pixels = document.querySelectorAll('.pixel');
     addPixelColorChange(pixels)
 };
+//change color when hovering over pixels
+function addPixelGrayscaleChange(pixels = pixels) {
+    pixels.forEach((pixel, i) => pixel.addEventListener('mouseover', (event) => {
+            event.target.style.backgroundColor = 'white';
+
+    }))
+};
+
 
 //change color when hovering over pixels
 function addPixelColorChange(pixels = pixels) {
@@ -46,9 +59,12 @@ function addPixelColorChange(pixels = pixels) {
             //remove 10% brightness
             pixelsBrightness[i] -= 10;
             event.target.style.filter = `brightness(${pixelsBrightness[i]}%)`
-            console.log(event.target.style.filter)
         }
     }))
+}
+
+function removeListeners(pixels=pixels, func) {
+    pixels.forEach(pixel => pixel.removeEventListener('mouseover', func))
 }
 
 function removePixels() {
@@ -61,19 +77,16 @@ generatePixels()
 
 
 function restartGrid() {
-    let size = prompt(
-        "Please indicate the number of squares per side you want:\r" +
-        "(The maximum number is 64)");
-    size = parseInt(size);
-    if (Number.isNaN(size)) return;//exit loop if cancel button is pressed on prompt
+    size = parseInt(sizeForm.value);
+    if (Number.isNaN(size)) return;//exit loop if there's no value on text field
     //If input is wrong, ask again
-    while (!Number.isInteger(size) || size > 64 || size < 1) {
-        size = prompt("Wrong! Write a number between 1 and 64.");
-        size = parseInt(size);
-        if (Number.isNaN(size)) break;//exit loop if cancel button is pressed on prompt
-        console.log(size)
+    if (!Number.isInteger(size) || size > 64 || size < 1) {
+        changeParagraph.textContent = `Only numbers between 1 and 64.` 
+        return
     };
-    if (Number.isNaN(size)) return;//exit loop if cancel button is pressed on prompt
+    changeParagraph.textContent = `Please indicate the number
+    of squares per side you want
+    (The maximum is 64)`;
 
     removePixels()
     generatePixels(size)
@@ -81,3 +94,15 @@ function restartGrid() {
 
 
 restartButton.addEventListener('click', () => restartGrid())
+
+
+grayscaleButton.addEventListener('click', () => {
+    removePixels()
+    generatePixels(size)
+    addPixelGrayscaleChange(pixels)
+})
+rainbowButton.addEventListener('click', () => {
+    removePixels()
+    generatePixels(size);
+    addPixelColorChange(pixels)
+})
