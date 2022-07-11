@@ -84,9 +84,9 @@ function restartGrid() {
         changeParagraph.textContent = `Only numbers between 1 and 64.` 
         return
     };
-    changeParagraph.textContent = `Please indicate the number
-    of squares per side you want
-    (The maximum is 64)`;
+    changeParagraph.textContent = 
+    `Number of squares per side
+    (The maximum is 64):`;
 
     removePixels()
     generatePixels(size)
@@ -100,9 +100,13 @@ grayscaleButton.addEventListener('click', () => {
     removePixels()
     generatePixels(size)
     addPixelGrayscaleChange(pixels)
+    grayscaleButton.style.backgroundColor = 'rgb(233, 130, 130)';
+    rainbowButton.style.backgroundColor = 'rgb(207, 214, 127)';
 })
 rainbowButton.addEventListener('click', () => {
     removePixels()
     generatePixels(size);
     addPixelColorChange(pixels)
+    rainbowButton.style.backgroundColor = 'rgb(233, 130, 130)';
+    grayscaleButton.style.backgroundColor = 'rgb(207, 214, 127)';
 })
