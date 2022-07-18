@@ -108,3 +108,20 @@ button {
     background-color: rgb(233, 130, 130);
 }
 
+footer {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    gap: 1vw;
+    color:rgb(118, 30, 70)
+}
+
+#github-logo {
+    height:30px;
+}
+
+#my-name {
+    flex: 0 0 auto;
+}
