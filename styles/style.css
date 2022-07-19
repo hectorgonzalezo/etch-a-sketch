@@ -1,13 +1,12 @@
-
+@import './reset.css';
 body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     align-content: center;
     background-color: azure;
-    gap: 5px;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: rgb(88, 41, 4);
 }
