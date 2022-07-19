@@ -1,9 +1,8 @@
 const sketchContainer = document.querySelector('.sketch-container')
-const restartButton = document.querySelector('#restart-button')
-const sizeForm = document.querySelector('#size-form')
-const changeParagraph = document.querySelector('#change-paragraph')
 const grayscaleButton = document.querySelector("#grayscale-button")
 const rainbowButton = document.querySelector('#rainbow-button')
+const sizeSlider = document.querySelector('#size-slider')
+const sizeDisplay = document.querySelector('#size-display')
 
 //size of each side of the sketch
 const initialSize = 16;
@@ -75,25 +74,14 @@ generatePixels()
 
 
 
-
 function restartGrid() {
-    size = parseInt(sizeForm.value);
-    if (Number.isNaN(size)) return;//exit loop if there's no value on text field
-    //If input is wrong, ask again
-    if (!Number.isInteger(size) || size > 64 || size < 1) {
-        changeParagraph.textContent = `Only numbers between 1 and 64.` 
-        return
-    };
-    changeParagraph.textContent = 
-    `Number of squares per side
-    (The maximum is 64):`;
-
-    removePixels()
-    generatePixels(size)
+    removePixels();
+    generatePixels(sizeSlider.value);
+    sizeDisplay.innerText = sizeSlider.value;
 }
 
-
-restartButton.addEventListener('click', () => restartGrid())
+//change size of grid using slider
+sizeSlider.addEventListener('input', (e) => restartGrid())
 
 
 grayscaleButton.addEventListener('click', () => {
