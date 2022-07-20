@@ -94,6 +94,7 @@ function restartGrid() {
     removePixels();
     generatePixels(sizeSlider.value);
     sizeDisplay.innerText = sizeSlider.value;
+    size = sizeSlider.value;
 }
 
 //change size of grid using slider
